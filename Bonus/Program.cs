@@ -6,6 +6,9 @@ namespace Bonus
     {
         static void Main(string[] args)
         {
+            var calclatorFP = new CalculatorFP();
+
+            calclatorFP.Print(calclatorFP.Sum(5, 6));
             var calculator = new CalculatorOOP();
             calculator.A = 5;
             calculator.B = 6;
