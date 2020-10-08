@@ -26,7 +26,22 @@ namespace FindEvensОrOdds
             };
             List<int> numbers = generateList(start, end);
             Predicate<int> evenPredicate = n => n % 2 == 0;
-            numbers = numbers.Where()
+            numbers = MyWhere(numbers, evenPredicate);
+            //Func<int, bool> evenPredicate = n => n % 2 == 0;
+            //numbers = numbers.Where(evenPredicate).ToList();
+            Console.WriteLine(string.Join(" ",numbers));
+        }
+        static List<int> MyWhere(List<int> numbers, Predicate<int> predicate)
+        {
+            List<int> res = new List<int>();
+            foreach (var number in numbers)
+            {
+                if (predicate(number))
+                {
+                    res.Add(number);
+                }
+            }
+            return res;
         }
     }
 }
