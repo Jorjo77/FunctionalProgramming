@@ -65,11 +65,11 @@ namespace FunctionalProgramming
 
             //Action -> returns void !; Func -> returns something!
             //т.e. всички методи(функции), които връщат void (т.е. не връщат стойност) са Action !!! Демо в проект Actions!
-            //цялата концепция е че вече нашите променливи могат да сочат към функции и да ги използваме като ги подаваме насам, натам, да ги извикваме когато поискаме.
+            //цялата концепция е че вече нашите променливи могат да сочат към методи (функции) и да ги използваме като ги подаваме насам, натам, да ги извикваме когато поискаме.
             //Реално правим тип данни за метод и можем в другите методи да казваме тук искам метод от даден тип.
             //Това Е МНОГО МОЩНО, постепенно ще осъзнаем това и какви мощни абстракции ще можем да правим с това, но след няколко месеца ще го оценим наистина.
 
-            //Predicate всъшност е анонимна функция, която връща bool
+            //Predicate всъшност е анонимна функция
             //Работи с Overload
             //Когато имаме по-сложна анонимна функция, можем да си я сложим на делегат и удобно да си я подаваме насам, натам.
             //Пример:             Func<string, bool> upperChecker = s => s[0] == s.ToUpper()[0];
@@ -87,16 +87,16 @@ namespace FunctionalProgramming
             Calculate(5, 5, sumDelegate);
             Calculate(5, 5, multiplyDelegate);
             Calculate(5, 5, (a, b) => a / b);
-            Calculate(5, 5, (a, b) => a * 100 * b * 100);
+            Calculate(5, 5, (a, b) => a *100 * b *100);
         }
         static int SumNumbers(int a, int b)
         {
-            Console.WriteLine("Summing numbers is the best feeling");
+            Console.WriteLine("Summing numbers is the best reeling");
             return a + b;
         }
         static int MultiplyNumbers(int a, int b)
         {
-            Console.WriteLine("Multiply numbers is the worse feeling");
+            Console.WriteLine("Multiply numbers is the worse reeling");
             return a * b;
         }
         //ключово тук е че кода дето пише не се занимава със самите операции!
