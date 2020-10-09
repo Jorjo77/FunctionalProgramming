@@ -25,7 +25,13 @@ namespace FindEvensОrOdds
                 return nums;
             };
             List<int> numbers = generateList(start, end);
+            //тук за демо разписваме и двата начина:
+            //ако променим лампдата на труе ще печата всички числа
             Predicate<int> evenPredicate = n => n % 2 == 0;
+            if (command == "odd")
+            {
+                evenPredicate = n => n % 2 != 0;
+            }
             numbers = MyWhere(numbers, evenPredicate);
             //Func<int, bool> evenPredicate = n => n % 2 == 0;
             //numbers = numbers.Where(evenPredicate).ToList();
