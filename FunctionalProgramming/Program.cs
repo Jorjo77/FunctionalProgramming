@@ -25,21 +25,21 @@ namespace FunctionalProgramming
             //numbers = numbers.Where(CheckEven).ToArray();
 
             //Важното за Linq: така можем да пишем и по сериозно твло в Linq
-            int[] numbers = new int[] { 1, 2, 3, 4, 5 };
-            numbers = numbers.Where(x =>
-            { Console.WriteLine($"X : {x} -> {x % 2 == 0}");
-            return x % 2 == 0;
-            }).ToArray();
-
-            //Важното за Linq:така можем (със скобите) да подадем повече от един параметър
             //int[] numbers = new int[] { 1, 2, 3, 4, 5 };
-            //numbers = numbers.Where((x, index) =>
-            //{
-            //    Console.WriteLine($"X : {x} -> {x % 2 == 0}");
-            //    return x % 2 == 0;
+            //numbers = numbers.Where(x =>
+            //{ Console.WriteLine($"X : {x} -> {x % 2 == 0}");
+            //return x % 2 == 0;
             //}).ToArray();
 
-            Console.WriteLine(string.Join(" ", numbers));
+            ////Важното за Linq:така можем (със скобите) да подадем повече от един параметър
+            ////int[] numbers = new int[] { 1, 2, 3, 4, 5 };
+            ////numbers = numbers.Where((x, index) =>
+            ////{
+            ////    Console.WriteLine($"X : {x} -> {x % 2 == 0}");
+            ////    return x % 2 == 0;
+            ////}).ToArray();
+
+            //Console.WriteLine(string.Join(" ", numbers));
             //същото като лампдата, но с име и може да се вика:
             //static bool CheckEven(int number)
             //{
@@ -69,7 +69,7 @@ namespace FunctionalProgramming
             //Реално правим тип данни за метод и можем в другите методи да казваме тук искам метод от даден тип.
             //Това Е МНОГО МОЩНО, постепенно ще осъзнаем това и какви мощни абстракции ще можем да правим с това, но след няколко месеца ще го оценим наистина.
 
-            //Predicate всъшност е анонимна функция.Може да се каже че е частен случай на Func защото приема нещо (променлива) и връща bool
+            //Predicate всъшност е анонимна функция. Може да се каже че е частен случай на Func защото приема нещо (променлива) и връща bool
             //Работи с Overload
             //Когато имаме по-сложна анонимна функция, можем да си я сложим на делегат и удобно да си я подаваме насам, натам.
             //Пример:             Func<string, bool> upperChecker = s => s[0] == s.ToUpper()[0];
@@ -82,41 +82,97 @@ namespace FunctionalProgramming
             //Пример: Array.ForEach(new int[]{1, 2, 3, 4 }, p=>Console.ReadLine(p.Name));
             //Func ползваме когато искаме да напишем по абстрактен код. И без това можем да програмираме, това си иска време за да го разбервм!
 
-            //Препоръча ни LINQ които е време да започнем да използваме!!!:
+            //Препоръча ни LINQ който е време да започнем да използваме!!!:
             // * First/ FirstOrDefault - връща първия елемент от зададено условие и ако не го намери гърми/връща дефолтната стойност на типа. 
             // * Last/ LastOrDefault - - връща последния елемент от зададено условие и ако не го намери гърми/връща дефолтната стойност на типа. 
             // * Single/ SingleOrDefault - - връща един елемент от зададено условие и ако има (намери) повече от един гърми/връща дефолтната стойност на типа. 
             // * Skip (и производните) - казваме му колко елемента да прескача!
             // * Find, Where, Select, Any, All, Average, Max, Min, Sum, OrderBy/Desending да си ги разгледам внимателно.
 
-            //В JS Select e Map!
-            Func<int, int, int> sumDelegate = SumNumbers;
-            sumDelegate(5, 5);
-            Func<int, int, int> multiplyDelegate = MultiplyNumbers;
-            Calculate(5, 5, sumDelegate);
-            Calculate(5, 5, multiplyDelegate);
-            Calculate(5, 5, (a, b) => a / b);
-            Calculate(5, 5, (a, b) => a *100 * b *100);
+            //    //В JS Select e Map!
+            //    Func<int, int, int> sumDelegate = SumNumbers;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям SumNumbers с SumNumbers).
+            //    sumDelegate(5, 5);
+            //    Func<int, int, int> multiplyDelegate = SumNumbers;
+            //    Calculate(5, 5, sumDelegate);
+            //    Calculate(5, 5, multiplyDelegate);
+            //    Calculate(5, 5, (a, b) => a / b);
+            //    Calculate(5, 5, (a, b) => a *100 * b *100);
+            //}
+            //static int SumNumbers(int a, int b)
+            //{
+            //    Console.WriteLine("Summing numbers is the best feeling");
+            //    return a + b;
+            //}
+            //static int MultiplyNumbers(int a, int b)
+            //{
+            //    Console.WriteLine("Multiply numbers is the worse feeling");
+            //    return a * b;
+            //}
+            ////ключово тук е че кода дето пише не се занимава със самите операции!
+            //static void Calculate(int a, int b,Func<int, int, int> operation)
+            //{
+            //    //с ,true му казваме да апендва
+            //    using (StreamWriter writer = new StreamWriter("../../../result.txt)",true))
+            //    {
+            //        writer.WriteLine("Start calculating");
+            //        writer.WriteLine(operation(a, b));
+            //    }
+            //}
+
+            //Друг добър пример:
+
+            Func<int, long> operation = Square;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям Factorial със Square).
+            //Console.WriteLine(operation(5));
+            PrintResult(5, Square);
+            PrintResult(5, Factorial);
+
+            Action<int> action = PrintToConsoleWithLines;//и тук мога следващия момент да кажа PrintToConsole и от едно място да променя функционалността на кода надолу!
+
+            // оператора += работи и върху Action и Func (не само с числа), можем да добавим метод със същата сигнатура! Например:
+            action += PrintToConsole;
+            action += PrintToConsole;
+            action += PrintToConsole;
+            action(3);//Taka можем да извикаме тези две функции една след дуга (PrintToConsoleWithLines и PrintToConsole (през action)). Така можем да си направим списък от методи които да бъдат извикани колкото пъти поискаме.
+            action -= PrintToConsole;// а така мога да премахна функция когато поискам, с -=.
+            //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
+            action(100);
+            action.GetInvocationList().Length//така можем да вземем броя на закачените елементи.
         }
-        static int SumNumbers(int a, int b)
+
+        static void PrintToConsoleWithLines(int x)
         {
-            Console.WriteLine("Summing numbers is the best reeling");
-            return a + b;
+            Console.WriteLine("=========================");
+            Console.WriteLine($"   PrintToConsoleWithLines: {x}");
+            Console.WriteLine("=========================");
         }
-        static int MultiplyNumbers(int a, int b)
+        static void PrintToConsole(int x)
         {
-            Console.WriteLine("Multiply numbers is the worse reeling");
-            return a * b;
+            Console.WriteLine($"   PrintToConsole: {x}");
         }
-        //ключово тук е че кода дето пише не се занимава със самите операции!
-        static void Calculate(int a, int b,Func<int, int, int> operation)
+        static void PrintResult(int x, Func<int, long> func)//подавайки тук функция(приемаща int и връщаща long), правим метода преизползваем (лесно от тук можем да променим поведението наадолу на програмата със смяна на функцията). Taка горе веднъж викаме PrintResult със Square, втори път с Factorial (и двете приемат int и връщат long) и кода става преизползваем (вдигаме нивото на абстракция). Така PrintResult ще има различно поведение взависимост от функцията която сме подали (PrintResult е функция от по висок ред)
         {
-            //с ,true му казваме да апендва
-            using (StreamWriter writer = new StreamWriter("../../../result.txt)",true))
+            var result = func(x);//така взависимост от това с какво викаме PrintResult(стига да приема int и връщаща long) тук веднъж ще е Square, втоти път Factorial)
+            Console.WriteLine("=========================");
+            Console.WriteLine($"   Result: {result}");
+            Console.WriteLine("=========================");
+        }
+        static long Square(int num)
+        {
+            return num * num;
+        }
+        static long Factorial(int num)
+        {
+            long result = 1;
+            for (int i = 2; i <= num; i++)
             {
-                writer.WriteLine("Start calculating");
-                writer.WriteLine(operation(a, b));
+                result *= i;
             }
+            return result;
         }
+
+        //CustomWhereWithLists - виж демото: 
+
+        //Lampda expresions (анонимна/инлайн функция) виж LampdaЕxpresionsDemo
+        //Func<int, bool> predicat - всяка функция, която връща bool наричаме predicat !!!
     }
 }
