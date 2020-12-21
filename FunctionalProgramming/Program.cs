@@ -137,7 +137,7 @@ namespace FunctionalProgramming
             action -= PrintToConsole;// а така мога да премахна функция когато поискам, с -=.
             //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
             action(100);
-            action.GetInvocationList().Length//така можем да вземем броя на закачените елементи.
+            //action.GetInvocationList().Length();//така можем да вземем броя на закачените елементи.
         }
 
         static void PrintToConsoleWithLines(int x)
@@ -175,5 +175,10 @@ namespace FunctionalProgramming
 
         //Lampda expresions (анонимна/инлайн функция) виж LampdaЕxpresionsDemo
         //Func<int, bool> predicat - всяка функция, която връща bool наричаме predicat !!!
+
+        //var използваме САМО когато типа е очевиден и само тогава е в помощ и удобство за програмиста !!!
+
+        //?. означава ако не е null направи еди какво си с това
+        //?? означават ако лявото е  null използвай дясното, ако не е използвай лявото!
     }
 }
