@@ -6,8 +6,16 @@ namespace FunctionalProgramming
 {
     class Program
     {
+        delegate void DoSomethingWithThisString();
+        delegate bool IntPredicate(int number);// дадох име на всички методи, които приемат int и връщат bool)
         static void Main(string[] args)
         {
+            Action action = () => Console.WriteLine("Hello!");
+            //DoSomethingWithThisString action = () => Console.WriteLine("Hello!"); Така можем да използваме този екшън (с името на делегата, който сме декларирали горе)
+            Func<int, bool> funcPredicate = x => x % 2 == 0;
+            IntPredicate intPredicateVariable = x => true;//горе декларирам (делегатите са към класа (декларираме ги в класа Program например, но може и извън него в namespace -а и така ще са видими и за другите класове), не може да ги сложим в метод, дори и в Main -а !!!) и тук вече мога да го изполозвам (Какво постигнах - дадох име на всички методи, които приемат int и връщат bool, като например на funcPredicate името на типа да не е общото Func а IntPredicate)
+                                                          //По принцип не създаваме делегати (ползваме готови) освен в случаите когато ползваме events (събития)!!!
+
             //във функционалното програмиране (ФП) винаги една функция дава еднакъв резултат, няма стейт (състояние), като в ООП. Променливите са константи!
             //ФП е много силно когато едновременно се случват много процеси!
             //haskel е много добър език за учене на ФП
@@ -48,14 +56,20 @@ namespace FunctionalProgramming
             //}
 
             //Делегати Delegates:
-            //Делегата е тип данни който описва метод!
+            //Делегата е тип данни който описва метод (може да се нарече шаблон за метод)!
             //Това е референция към функция/поинтер към функция/променлива която държи/сочи към функция. Тази променлива/тип може да бъде извиквана като функция или да я подаваме наляво, надясно както подаваме променлива - това е ключовото нещо за делегата!!!
             //Делегата описва каква е сигнатурата на самия метод (какви параметри приема, какви данни връща)
-            //Func<T,V>, T е параметъра който приема, V е параметъра който връща (може да са различни типове). Това Func е клас, който е така направен че да може да приема методи, които може да използваме.
+            //Func<T,V>, T е параметъра който приема, V е параметъра който връща (може да са различни типове, а при повече параметри return type-a e винаги последния). Това Func е клас, който е така направен че да може да приема методи, които може да използваме.
             //Пример: Func<int, string> func = n =>n.ToString(); , това с var не работи!
             // информацията която ни трябва за да направим от дадена функция(метод) делегат е какви типове приема и връща
             //първите два инта са параметрите които приема, а последния в скобите е този който връща.
-            //Делегатите се декларират извън методи с ключовата думичка delegate и описват метода като какво приема, какво връща и какво му е името!
+            //Делегатите се декларират извън методи с ключовата думичка delegate и описват метода (една декларация на метод без тяло) като какво приема, какво връща и какво му е името!
+
+            //Пример: 
+            //public delegate int Multiplier (int x, int y)
+            //Multiplier calc = (x, y) => x * y;
+            //, това е същото като Func<int, int, int> но типа си има име (Multiplier) a не е общото Func.
+
 
             //Func<int, int, int> sumDelegate = SumNumbers;
             //sumDelegate(5, 5);
@@ -124,54 +138,54 @@ namespace FunctionalProgramming
 
             //Друг добър пример:
 
-            Func<int, long> operation = Square;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям Factorial със Square).
+            //Func<int, long> operation = Square;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям Factorial със Square).
             //Console.WriteLine(operation(5));
-            PrintResult(5, Square);
-            PrintResult(5, Factorial);
+            //PrintResult(5, Square);
+            //PrintResult(5, Factorial);
 
-            Action<int> action = PrintToConsoleWithLines;//и тук мога следващия момент да кажа PrintToConsole и от едно място да променя функционалността на кода надолу!
+            //Action<int> action = PrintToConsoleWithLines;//и тук мога следващия момент да кажа PrintToConsole и от едно място да променя функционалността на кода надолу!
 
             // оператора += работи и върху Action и Func (не само с числа), можем да добавим метод със същата сигнатура! Например:
-            action += PrintToConsole;
-            action += PrintToConsole;
-            action += PrintToConsole;
-            action(3);//Taka можем да извикаме тези две функции една след дуга (PrintToConsoleWithLines и PrintToConsole (през action)). Така можем да си направим списък от методи които да бъдат извикани колкото пъти поискаме.
-            action -= PrintToConsole;// а така мога да премахна функция когато поискам, с -=.
-            //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
-            action(100);
-            //action.GetInvocationList().Length();//така можем да вземем броя на закачените елементи.
+            //action += PrintToConsole;
+            //action += PrintToConsole;
+            //action += PrintToConsole;
+            //action(3);//Taka можем да извикаме тези две функции една след дуга (PrintToConsoleWithLines и PrintToConsole (през action)). Така можем да си направим списък от методи които да бъдат извикани колкото пъти поискаме.
+            /* action -= PrintToConsole;*/// а така мога да премахна функция когато поискам, с -=.
+                                          //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
+                                          //action(100);
+                                          //action.GetInvocationList().Length();//така можем да вземем броя на закачените елементи.
         }
 
-        static void PrintToConsoleWithLines(int x)
-        {
-            Console.WriteLine("=========================");
-            Console.WriteLine($"   PrintToConsoleWithLines: {x}");
-            Console.WriteLine("=========================");
-        }
-        static void PrintToConsole(int x)
-        {
-            Console.WriteLine($"   PrintToConsole: {x}");
-        }
-        static void PrintResult(int x, Func<int, long> func)//подавайки тук функция(приемаща int и връщаща long), правим метода преизползваем (лесно от тук можем да променим поведението наадолу на програмата със смяна на функцията). Taка горе веднъж викаме PrintResult със Square, втори път с Factorial (и двете приемат int и връщат long) и кода става преизползваем (вдигаме нивото на абстракция). Така PrintResult ще има различно поведение взависимост от функцията която сме подали (PrintResult е функция от по висок ред)
-        {
-            var result = func(x);//така взависимост от това с какво викаме PrintResult(стига да приема int и връщаща long) тук веднъж ще е Square, втоти път Factorial)
-            Console.WriteLine("=========================");
-            Console.WriteLine($"   Result: {result}");
-            Console.WriteLine("=========================");
-        }
-        static long Square(int num)
-        {
-            return num * num;
-        }
-        static long Factorial(int num)
-        {
-            long result = 1;
-            for (int i = 2; i <= num; i++)
-            {
-                result *= i;
-            }
-            return result;
-        }
+        //static void PrintToConsoleWithLines(int x)
+        //{
+        //    Console.WriteLine("=========================");
+        //    Console.WriteLine($"   PrintToConsoleWithLines: {x}");
+        //    Console.WriteLine("=========================");
+        //}
+        //static void PrintToConsole(int x)
+        //{
+        //    Console.WriteLine($"   PrintToConsole: {x}");
+        //}
+        //static void PrintResult(int x, Func<int, long> func)//подавайки тук функция(приемаща int и връщаща long), правим метода преизползваем (лесно от тук можем да променим поведението наадолу на програмата със смяна на функцията). Taка горе веднъж викаме PrintResult със Square, втори път с Factorial (и двете приемат int и връщат long) и кода става преизползваем (вдигаме нивото на абстракция). Така PrintResult ще има различно поведение взависимост от функцията която сме подали (PrintResult е функция от по висок ред)
+        //{
+        //    var result = func(x);//така взависимост от това с какво викаме PrintResult(стига да приема int и връщаща long) тук веднъж ще е Square, втоти път Factorial)
+        //    Console.WriteLine("=========================");
+        //    Console.WriteLine($"   Result: {result}");
+        //    Console.WriteLine("=========================");
+        //}
+        //static long Square(int num)
+        //{
+        //    return num * num;
+        //}
+        //static long Factorial(int num)
+        //{
+        //    long result = 1;
+        //    for (int i = 2; i <= num; i++)
+        //    {
+        //        result *= i;
+        //    }
+        //    return result;
+        //}
 
         //CustomWhereWithLists - виж демото: 
 
