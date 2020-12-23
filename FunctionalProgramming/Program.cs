@@ -33,6 +33,7 @@ namespace FunctionalProgramming
             // а where може и така:
             //numbers = numbers.Where(CheckEven).ToArray();
 
+            //LinqUsefulMethods - да си видя демото !!!
             //Важното за Linq: така можем да пишем и по сериозно твло в Linq
             //int[] numbers = new int[] { 1, 2, 3, 4, 5 };
             //numbers = numbers.Where(x =>
