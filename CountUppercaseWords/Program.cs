@@ -13,6 +13,13 @@ namespace CountUppercaseWords
                 .Where(upperChecker)
                 .ToArray();
             Console.WriteLine(string.Join("\n", input));
+
+            //MyJob
+            //var text = Console.ReadLine();
+            //var words = text.Split();
+            //Func<string, bool> predicate = word => char.IsUpper(word[0]);
+            //var result = words.Where(predicate).OrderBy(w => w);
+            //Console.WriteLine(string.Join(Environment.NewLine, result));
         }
     }
 }

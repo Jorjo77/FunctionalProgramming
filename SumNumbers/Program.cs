@@ -7,10 +7,19 @@ namespace SumNumbers
     {
         static void Main(string[] args)
         {
+
             int[] array = Console.ReadLine().Split(", ")
                 .Select(ParseNumber)
                 .ToArray();
             PrintResults(array, GetCount, Sum);
+
+            //MyJob:
+            //int[] result = Console.ReadLine()
+            //.Split(", ", StringSplitOptions.RemoveEmptyEntries)
+            //.Select(int.Parse)
+            //.ToArray();
+            //Console.WriteLine(result.Length);
+            //Console.WriteLine(result.Sum());
 
         }
         static int GetCount(int[] array)

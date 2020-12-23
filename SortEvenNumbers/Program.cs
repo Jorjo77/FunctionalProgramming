@@ -23,9 +23,6 @@ namespace SortEvenNumbers
                 //това горе е същиото като това простото: OrderBy(x=>x)
                 .ToArray();
             Console.WriteLine(string.Join(", ", numbers));
-
-
-
         }
     }
 }
