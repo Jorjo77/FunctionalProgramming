@@ -45,7 +45,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LampdaЕxpresionsDemo", "La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyParse", "MyParse\MyParse.csproj", "{26A3E1E5-3755-45D3-8BBE-642C6C924E5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqUsefulMethods", "LinqUsefulMethods\LinqUsefulMethods.csproj", "{28714F44-BA4C-4FFB-8902-FF0C17056190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqUsefulMethods", "LinqUsefulMethods\LinqUsefulMethods.csproj", "{28714F44-BA4C-4FFB-8902-FF0C17056190}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListOfPredicates", "ListOfPredicates\ListOfPredicates.csproj", "{FDC6242F-06E8-4994-8A10-F41A357ABF9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PredicateParty", "PredicateParty\PredicateParty.csproj", "{350A1C55-6AE7-4925-9467-D678EE1A77E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriFunction", "TriFunction\TriFunction.csproj", "{B4AAC0E9-ADD1-4D08-B984-30C856D93153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +147,18 @@ Global
 		{28714F44-BA4C-4FFB-8902-FF0C17056190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28714F44-BA4C-4FFB-8902-FF0C17056190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28714F44-BA4C-4FFB-8902-FF0C17056190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC6242F-06E8-4994-8A10-F41A357ABF9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC6242F-06E8-4994-8A10-F41A357ABF9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC6242F-06E8-4994-8A10-F41A357ABF9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC6242F-06E8-4994-8A10-F41A357ABF9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{350A1C55-6AE7-4925-9467-D678EE1A77E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{350A1C55-6AE7-4925-9467-D678EE1A77E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{350A1C55-6AE7-4925-9467-D678EE1A77E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{350A1C55-6AE7-4925-9467-D678EE1A77E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4AAC0E9-ADD1-4D08-B984-30C856D93153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4AAC0E9-ADD1-4D08-B984-30C856D93153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4AAC0E9-ADD1-4D08-B984-30C856D93153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4AAC0E9-ADD1-4D08-B984-30C856D93153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

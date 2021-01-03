@@ -12,7 +12,7 @@ namespace CustomComparator
             .Split(" ", StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse).ToArray();
 
-            //това отдолу може и с тернарен оператор":" (кратко(решение на 3 реда), но поне за мен по-неясно)
+            //това отдолу може и с тернарен оператор ":" (кратко(решение на 3 реда), но поне за мен по-неясно)
             //Array.Sort(numbers, (x, y) =>  = (x % 2 == 0 && y % 2 != 0) ? -1 :
             //(x % 2 != 0 && y % 2 == 0) ? 1 : 
             // x.CompareTo(y);

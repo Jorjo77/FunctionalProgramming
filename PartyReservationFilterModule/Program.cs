@@ -14,14 +14,16 @@ namespace PartyReservationFilterModule
             while (true)
             {
                 string inputCommand = Console.ReadLine();
+
+                if (inputCommand == "Print")
+                {
+                    break;
+                }
                 string[] splitedCommand = inputCommand.Split(";");
                 string commandName = splitedCommand[0];
                 string filterType = splitedCommand[1];
                 string argument = splitedCommand[2];
-                if (inputCommand=="Print")
-                {
-                    break;
-                }
+
                 if (commandName == "Add filter")
                 {
                     filters.Add($"{filterType};{argument}");

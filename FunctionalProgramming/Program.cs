@@ -14,7 +14,7 @@ namespace FunctionalProgramming
             //DoSomethingWithThisString action = () => Console.WriteLine("Hello!"); Така можем да използваме този екшън (с името на делегата, който сме декларирали горе)
             Func<int, bool> funcPredicate = x => x % 2 == 0;
             IntPredicate intPredicateVariable = x => true;//горе декларирам (делегатите са към класа (декларираме ги в класа Program например, но може и извън него в namespace -а и така ще са видими и за другите класове), не може да ги сложим в метод, дори и в Main -а !!!) и тук вече мога да го изполозвам (Какво постигнах - дадох име на всички методи, които приемат int и връщат bool, като например на funcPredicate името на типа да не е общото Func а IntPredicate)
-            
+
             //По принцип не създаваме делегати (ползваме готови) освен в случаите когато ползваме events (събития)!!!
 
             //във функционалното програмиране (ФП) винаги една функция дава еднакъв резултат, няма стейт (състояние), като в ООП. Променливите са константи!
@@ -109,7 +109,7 @@ namespace FunctionalProgramming
             // * Find, Where, Select, Any, All, Average, Max, Min, Sum, OrderBy/Desending да си ги разгледам внимателно.
 
             //    //В JS Select e Map!
-            //    Func<int, int, int> sumDelegate = SumNumbers;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям SumNumbers с SumNumbers).
+            //    Func<int, int, int> sumDelegate = SumNumbers;//Този тип данни Func ни дава възможността при добре написан код много лесно да променим функционалността(работата) на програмата (например сменям SumNumbers с MultiplyNumbers).
             //    sumDelegate(5, 5);
             //    Func<int, int, int> multiplyDelegate = SumNumbers;
             //    Calculate(5, 5, sumDelegate);
@@ -153,9 +153,9 @@ namespace FunctionalProgramming
             //action += PrintToConsole;
             //action(3);//Taka можем да извикаме тези две функции една след дуга (PrintToConsoleWithLines и PrintToConsole (през action)). Така можем да си направим списък от методи които да бъдат извикани колкото пъти поискаме.
             /* action -= PrintToConsole;*/// а така мога да премахна функция когато поискам, с -=.
-                                          //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
-                                          //action(100);
-                                          //action.GetInvocationList().Length();//така можем да вземем броя на закачените елементи.
+            //Това += и -= не се ползва в стандартните програми, но евенти, които ще ползваме по-нататък се ползва (нарича се закачане и откачане на събитие и е част от парадигмата event hendling, която имаме в C#)
+            //action(100);
+            //action.GetInvocationList().Length();//така можем да вземем броя на закачените елементи.
         }
 
         //static void PrintToConsoleWithLines(int x)
